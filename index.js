@@ -8,13 +8,6 @@ const app = new App({
   appToken: process.env.SLACK_APP_TOKEN,
   socketMode: true
 });
-// ping
-app.command("/kuchupuchubot-ping", async ({ command, ack, respond }) => {
-  const start = Date.now();
-  await ack();
-  const latency = Date.now() - start;
-  await respond({ text: `Pong!\nLatency: ${latency}ms` });
-});
 //help
 app.command("/kuchupuchubot-help", async ({ ack, respond }) => {
   await ack();
@@ -25,6 +18,13 @@ app.command("/kuchupuchubot-help", async ({ ack, respond }) => {
 /kuchupuchubote-ping - Check bot latency
 /kuchupuchubot-doggy - Get a cutie doggy image`
   });
+});
+// ping
+app.command("/kuchupuchubot-ping", async ({ command, ack, respond }) => {
+  const start = Date.now();
+  await ack();
+  const latency = Date.now() - start;
+  await respond({ text: `Pong!\nLatency: ${latency}ms` });
 });
 // random dog
 app.command("/kuchupuchubot-doggy", async ({ ack, respond }) => {
@@ -51,6 +51,52 @@ app.command("/kuchupuchubot-doggy", async ({ ack, respond }) => {
       text: "Doggy unavailable :("
     });
   }
+});
+// random cat
+app.command("/kuchupuchubot-meow",async({ack, respond}) => {
+  await ack();
+  try{
+    const response = await axios.get("https://api.thecatapi.com/v1/images/search");
+    await respond({
+      blocks: [
+        {
+          type: "image",
+          image_url: response.data[0].url,
+          alt_text: "Meow"
+        }
+      ]
+    });
+  }catch(err){
+    console.error(err);
+
+    await respond({
+      text: "Meow unavailable :("
+    });
+  }
+
+});
+// random batak
+app.command("/kuchupuchubot-quack",async({ack, respond}) => {
+  await ack();
+  try{
+    const response = await axios.get("https://random-d.uk/api/v2/random");
+    await respond({
+      blocks: [
+        {
+          type: "image",
+          image_url: response.data.url,
+          alt_text: "Batak Kumar"
+        }
+      ]
+    });
+  }catch(err){
+    console.error(err);
+
+    await respond({
+      text: "Batak unavailable :("
+    });
+  }
+
 });
 
 (async () => {
