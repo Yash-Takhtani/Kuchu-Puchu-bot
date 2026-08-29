@@ -16,7 +16,9 @@ app.command("/kuchupuchubot-help", async ({ ack, respond }) => {
 `Available Commands:
 /kuchupuchubot-help - Get some help!
 /kuchupuchubote-ping - Check bot latency
-/kuchupuchubot-doggy - Get a cutie doggy image`
+/kuchupuchubot-doggy - Get a cutie doggy image
+/kuchupuchubot-quack - Get a cutie duck image
+/kuchupuchubot-meow - Get a cutie cat image`
   });
 });
 // ping
