@@ -16,4 +16,4 @@ These commands were made possible by the following APIs -
 
 The bot is live 24/7, thanks to Hackclub's Nest. You can test it out here right now! - 
 
-https://app.slack.com/client/E09V59WQY1E/C0P5NE354?skip_today=1
+Join the [Hack Club Slack](https://slack.hackclub.com/) and try the bot [here](https://hackclub.enterprise.slack.com/archives/C0P5NE354).
