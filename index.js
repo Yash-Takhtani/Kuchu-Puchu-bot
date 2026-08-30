@@ -3,6 +3,8 @@ require("dotenv").config();
 const axios = require("axios");
 const { App } = require("@slack/bolt");
 
+const pexels = process.env.PEXELS;
+
 const app = new App({
   token: process.env.SLACK_BOT_TOKEN,
   appToken: process.env.SLACK_APP_TOKEN,
@@ -18,7 +20,8 @@ app.command("/kuchupuchubot-help", async ({ ack, respond }) => {
 /kuchupuchubote-ping - Check bot latency
 /kuchupuchubot-doggy - Get a cutie doggy image
 /kuchupuchubot-quack - Get a cutie duck image
-/kuchupuchubot-meow - Get a cutie cat image`
+/kuchupuchubot-meow - Get a cutie cat image
+/kuchupuchubot-pigeon - Get a cutie pigeon image`
   });
 });
 // ping
@@ -96,6 +99,34 @@ app.command("/kuchupuchubot-quack",async({ack, respond}) => {
 
     await respond({
       text: "Batak unavailable :("
+    });
+  }
+
+});
+// random pigeon
+app.command("/kuchupuchubot-pigeon",async({ack, respond}) => {
+  await ack();
+  try{
+    const response = await axios.get("https://api.pexels.com/v1/search?query=pigeons", {
+      headers: {
+        Authorization: pexels
+      }
+    });
+    const photos = response.data?.photos;
+    await respond({
+      blocks: [
+        {
+          type: "image",
+          image_url: photos[0].src.medium,
+          alt_text: "Gutargu"
+        }
+      ]
+    });
+  }catch(err){
+    console.error(err);
+
+    await respond({
+      text: "Pigeon unavailable :("
     });
   }
 

@@ -9,6 +9,7 @@ This bot is very cute (Kuchu Puchu). It shows you cute images of dogs, cats and 
  - /kuchupuchubot-doggy  -  Get a cutie doggy image
  - /kuchupuchubot-quack  -  Get a cutie duck image
  - /kuchupuchubot-meow   -  Get a cutie cat image
+ - /kuchupuchubot-pigeon -  Get a cutie pigeon image
 
 <img width="465" height="353" alt="image" src="https://github.com/user-attachments/assets/820a24ee-75e9-48a4-aba8-140aac372dbf" />
 
@@ -29,4 +30,5 @@ Join the [Hack Club Slack](https://slack.hackclub.com/) and try the bot [here](h
  - Dog images - https://random.dog/woof.json
  - Cat images - https://api.thecatapi.com/v1/images/search
  - Duck images - https://random-d.uk/api/v2/random
+ - Pigeon images - https://api.pexels.com/v1/search?query=pigeons
  - The bot is live 24/7, thanks to Hackclub's [Nest](https://nest.hackclub.com/). 
