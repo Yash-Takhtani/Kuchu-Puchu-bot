@@ -106,18 +106,30 @@ app.command("/kuchupuchubot-quack",async({ack, respond}) => {
 // random pigeon
 app.command("/kuchupuchubot-pigeon",async({ack, respond}) => {
   await ack();
+  const randomPage = Math.floor(Math.random() * 50) + 1;
   try{
-    const response = await axios.get("https://api.pexels.com/v1/search?query=pigeons", {
+    const response = await axios.get("https://api.pexels.com/v1/search", {
+      params: {
+        query: "pigeons",
+        per_page: 20,
+        page: randomPage,
+      },
       headers: {
-        Authorization: pexels
-      }
+        Authorization: pexels,
+      },
     });
+
     const photos = response.data?.photos;
+    if (!photos || photos.length === 0) {
+      throw new Error("No photos returned");
+    }
+    const randomPhoto = photos[Math.floor(Math.random() * photos.length)];
+
     await respond({
       blocks: [
         {
           type: "image",
-          image_url: photos[0].src.medium,
+          image_url: randomPhoto.src.medium,
           alt_text: "Gutargu"
         }
       ]
